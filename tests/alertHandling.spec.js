@@ -11,7 +11,9 @@ test('successful message should be displayed after alert handling', async ({ pag
   await page.locator('[href="/javascript_alerts"]').click();
 
   // accept alert
-  
+  page.on('dialog', dialog => dialog.accept());
+  await page.locator('[onclick="jsAlert()"]').click();
+
   // expect that successfulMessage is displayed
-  
+  await expect(page.locator('#result')).toHaveText(successfulMessage);
 });
