@@ -1,14 +1,18 @@
 {
-  "name": "js_unit_playwright",
+  "type": "module",
+  "name": "a1qa-js-playwright-framework",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
+  "imports": {
+    "#framework/*": "./framework/*"
+  },
   "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
-    "@playwright/test": "^1.60.0",
-    "@types/node": "^24.10.1"
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^24.10.2"
   }
 }

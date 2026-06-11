@@ -1,0 +1,48 @@
+import ElementType from '../constants/ElementType.js';
+import Timeouts from '../constants/Timeouts.js';
+import ElementStateHandler from './helpers/elementState.js';
+
+export default class BaseElement {
+  constructor(locator, name) {
+    this._locator = locator;
+    this._name = name;
+    this._type = ElementType.ELEMENT;
+  }
+
+  get locator() {
+    return this._locator;
+  }
+
+  get state() {
+    return new ElementStateHandler(this.locator, this._name);
+  }
+
+  /**
+   * Click on element
+   * @returns {Promise<void>}
+   */
+  async click() {
+    await this.locator.click();
+  }
+
+  /**
+   * Get visible text from element
+   * @returns {Promise<string>}
+   */
+  async getText() {
+    return this.locator.innerText();
+  }
+
+  /**
+   * Move mouse cursor to element
+   * @returns {Promise<void>}
+   */
+  async moveTo() {
+    await this.locator.hover();
+  }
+
+    /** Wait for element to be visible */
+  async waitForDisplayed(timeout = Timeouts.EXPLICIT_WAIT) {
+    await this.locator.waitFor({ state: 'visible', timeout });
+  }
+}
