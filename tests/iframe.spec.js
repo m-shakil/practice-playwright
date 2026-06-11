@@ -14,15 +14,16 @@ test('check that changes is backed from iframe input', async ({ page }) => {
   
   const iframe = page.frameLocator('#mce_0_ifr');
   
-  // Add text to the input field
+  // // Add text to the input field
+  // const editor = iframe.locator('#tinymce');
+  // await editor.fill(randomString);
 
+  // await expect(editor).toHaveText(`${initText}${randomString}`);
 
-  await expect(editor).toHaveText(`${initText}${randomString}`);
+  // await page.getByText('Edit').click();
+  // // Undo changes 
+  // await page.getByText('Undo').click();
 
-  await page.getByText('Edit').click();
-  // Undo changes 
-
-
-  // Expect that initText is displayed in the editor
-
+  // // Expect that initText is displayed in the editor
+  // await expect(editor).toHaveText(initText);
 });

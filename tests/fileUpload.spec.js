@@ -13,10 +13,10 @@ test('file should be uploaded', async ({ page }) => {
   await page.locator('[href="/upload"]').click();
 
   // upload file with fullPathToFile path
-  
+  await page.locator('#file-upload').setInputFiles(fullPathToFile);
   await page.locator('#file-submit').click();
 
   const uploadedFiles = page.locator('#uploaded-files');
   // expect that fileName on Upload page is correct
-  
+  await expect(uploadedFiles).toHaveText(fileName);
 });

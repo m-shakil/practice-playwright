@@ -21,9 +21,14 @@ test('file should be downloaded', async ({ page }) => {
   const downloadedFilePath = path.join(downloadDir, fileName);
 
   // wait until the file is fully downloaded along the specific downloadedFilePath
+  const [download] = await Promise.all([
+    page.waitForEvent('download'),
+    fileLink.click()
+  ]);
+  await download.saveAs(downloadedFilePath);
 
   // assert that file downloaded
-  
+  expect(fs.existsSync(downloadedFilePath)).toBeTruthy();
 });
 
 test.afterAll(() => {
