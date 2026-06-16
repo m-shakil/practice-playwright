@@ -12,13 +12,13 @@ test.beforeEach(async ({ customBrowser: browser }) => {
 test('successful message should be displayed after alert handling', async ({ customBrowser: browser }) => {
   const mainPage = new MainPage(browser.page);
   // Navigate to 'JavaScript Alerts'
-
+  await mainPage.clickNavigationLink('JavaScript Alerts');
   
-  browser.page.on('dialog', dialog => dialog.accept());
+  // browser.page.on('dialog', dialog => dialog.accept());
   const javaScriptAlertsPage = new JavaScriptAlertsPage(browser.page);
   expect(await javaScriptAlertsPage.isPageOpened()).toBe(true);
-  await javaScriptAlertsPage.clickForJSAlertButton();
+  await browser.acceptAlert(() => javaScriptAlertsPage.clickForJSAlertButton());
   
   // Add assertion to check successfulMessage
-
+  expect(await javaScriptAlertsPage.getResultText()).toBe(successfulMessage);
 });
