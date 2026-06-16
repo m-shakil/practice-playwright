@@ -9,6 +9,6 @@
     "password": ""
   },
   "successfulBasicAuthMessage": "Congratulations! You must have the proper credentials.",
-  "fileForUpload": "",
+  "fileForUpload": "tests/resources/test.txt",
   "downloadFileName": ""
 }
