@@ -15,7 +15,10 @@ test('interact with text in iFrame', async ({ customBrowser: browser }) => {
   await framesPage.clickIframeButton();
 
   // Implement missed steps
+  const iframePage = new IFramePage(browser.page);
+  await iframePage.typeIntoEditor(randomString);
+  expect(await iframePage.getFrameText()).toEqual(`${defaultInputText}${randomString}`);
 
-
+  await iframePage.undoChanges();
   expect(await iframePage.getFrameText()).toEqual(defaultInputText);
 });
